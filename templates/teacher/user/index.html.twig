@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-2 text-gray-800">Students</h1>
+    <p class="mb-4">  See All domains here</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="row card-header py-3">
+            <h6 class="nav-item m-0 font-weight-bold text-primary">My Students</h6>
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <a class="nav-item" href="{{ path('teacher_user_new') }}">
+                        <button type="button" class="btn btn-outline-primary btn-circle">
+                            <i class="fa fa-minus"></i>
+                        </button></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered border-bottom-primary" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Avatar</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Password</th>
+                    <th>Firstname</th>
+                    <th>Phone</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Avatar</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Password</th>
+                    <th>Firstname</th>
+                    <th>Phone</th>
+                    <th>actions</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.avatar }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                        <td>{{ user.password }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>
+                            <a href="{{ path('teacher_user_show', {'id': user.id}) }}">show</a>
+                            <a href="{{ path('teacher_user_edit', {'id': user.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

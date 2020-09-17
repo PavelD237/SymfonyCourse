@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Domain{% endblock %}
+
+{% block body %}
+    <h1>Edit Domain</h1>
+
+    {{ include('teacher/domain/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('teacher_domain_index') }}">back to list</a>
+
+{% endblock %}

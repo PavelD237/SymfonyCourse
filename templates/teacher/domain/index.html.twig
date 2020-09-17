@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Domain{% endblock %}
+
+{% block body %}
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="row card-header py-3">
+            <h3 class="nav-item m-0 font-weight-bold text-primary">STUDYING DOMAINS</h3>
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <a class="nav-item" href="{{ path('teacher_domain_new') }}">
+                        <button type="button" class="btn btn-outline-danger btn-circle">
+                            <i class="fa fa-plus"></i>
+                        </button></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered border-bottom-danger" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Courses</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Domain</th>
+                    <th>Course</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                {% for domain in domains %}
+                    <tr>
+                        <td>
+                            <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#collapseCardExample{{ domain.id }}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        {{ domain.name }}</h6>
+                                </a>
+                            </div>
+                            <div class="card shadow mb-3">
+                                <div class="collapse hidden" id="collapseCardExample{{ domain.id }}">
+                                    <div class="card-body">
+                                         {{ domain.description }} <br> <br>
+                                          {{ domain.courses.count() }} Cours Disponibles
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td >
+                            <a href="#">
+                                <button type="button" class="btn btn-danger btn-circle">
+                                    <i class="fa fa-book-open"></i>
+                                </button></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

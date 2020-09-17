@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block menu %}{{ include('student/menu.html.twig') }}{% endblock %}
+{% block title %}New Course{% endblock %}
+
+{% block body %}
+    <h1>Create new Course</h1>
+
+    {{ include('student/course/_form.html.twig') }}
+
+    <a href="{{ path('student_course_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Course{% endblock %}
+
+{% block body %}
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Courses</h1>
+    <p class="mb-4">  See All courses here</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="row card-header py-3">
+            <h6 class="nav-item m-0 font-weight-bold text-primary">My Courses</h6>
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <a class="nav-item" href="{{ path('teacher_course_new') }}">
+                        <button type="button" class="btn btn-outline-success btn-circle">
+                            <i class="fa fa-plus"></i>
+                        </button></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+                <table class="table table-bordered border-bottom-success" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Datestart</th>
+                        <th>Totalhours</th>
+                        <th>Capacity</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Datestart</th>
+                        <th>Totalhours</th>
+                        <th>Capacity</th>
+                        <th>actions</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ course.id }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.description }}</td>
+                            <td>{{ course.datestart ? course.datestart|date('Y-m-d') : '' }}</td>
+                            <td>{{ course.totalhours }}</td>
+                            <td>{{ course.capacity }} {{ course.courseteacher }}</td>
+                            <td>
+                                <a href="{{ path('teacher_course_show', {'id': course.id}) }}">show</a>
+                                <a href="{{ path('teacher_course_edit', {'id': course.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}

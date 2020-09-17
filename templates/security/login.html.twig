@@ -1,0 +1,49 @@
+{% extends 'login.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block login %}
+
+<form  class="user" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <div class="form-group">
+        <input type="email" value="{{ last_username }}" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required autofocus>
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
+
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <div class="form-group">
+        <div class="custom-control custom-checkbox small">
+            <input type="checkbox" name="_remember_me" class="custom-control-input" id="customCheck">
+            <label class="custom-control-label" for="customCheck">Remember Me</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-user btn-block">
+        Login
+    </button>
+    <hr>
+    <a href="index.html" class="btn btn-google btn-user btn-block">
+        <i class="fab fa-google fa-fw"></i> Login with Google
+    </a>
+    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+    </a>
+
+</form>
+
+
+{% endblock %}
